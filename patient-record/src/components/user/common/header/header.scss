@@ -21,43 +21,7 @@ $breakpoint: 992px;
              
 
         .topbar{
-            @include m.flexbox(row, space-between, center, 1rem);
-            border-bottom: 1px dotted v.$color3;
-            flex:1;
-
-            @media(max-width: $breakpoint){
-                border-bottom: 0;
-                padding:1rem;
-            }
-            
-
-            ul{
-                @include m.reset-list();
-
-                a{
-                    @include m.flexbox($align-items: center, $gap:0.5rem);
-                    text-decoration: none;
-                }
-
-                &.contact-bar{
-                    @include m.flexbox($gap:1rem);
-                    flex:2;
-                    font-size: 0.8rem;
-                    a{
-                        color: v.$color3;
-                    }
-                }
-
-                &.social-bar{
-                    @include m.flexbox($justify-content: flex-end, $gap:1rem);
-                    flex:1;
-                    padding-right: 1rem;
-                    font-size: 1rem;
-                }
-
-
-            }
-
+        
         
         
         }
@@ -87,7 +51,7 @@ $breakpoint: 992px;
             }
 
             .navbar-toggler{
-                background-color: v.$color2;
+                background-color: v.$color2; 
             }
 
        
