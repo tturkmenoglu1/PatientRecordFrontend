@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../components/user/common/header/Header'
-import Footer from '../components/user/common/footer/Footer'
+import Header from '../components/user/common/header/header.js'
+import Footer from '../components/user/common/footer/footer.js'
 
 const UserTemplate = ({children}) => {
   return (
