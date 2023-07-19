@@ -3,61 +3,33 @@
 
 $breakpoint: 992px;
 
-.header{
-    @include m.flexbox($align-items: stretch);
-    background-color: v.$color4 ;
 
-    @media(max-width: $breakpoint){
-        @include m.flexbox(column, space-between, stretch);
-        position: relative;
+.menubar{
+     flex:1;
+     @media(max-width: $breakpoint){
+         position: absolute;
+         top:1rem;
+         right:1rem;
+         left:1rem;
+         .container{
+             justify-content: flex-end;
+         }
+         .navbar-collapse{
+             background-color: v.$color4;
+             padding:1rem;
+             margin-top: 3rem;
+         }
+     }
+     a{
+         @include m.flexbox($align-items: center, $gap:0.5rem);
+     }
+     .navbar-toggler{
+         background-color: v.$color2; 
+     }
 
-    }
-
-    .menus{
-        @include m.flexbox(column, center, stretch);
-        flex:1;
-        padding-left:1rem;
-
-             
-
-        .topbar{
-        
-        
-        
-        }
-
-        .menubar{
-            flex:1;
-
-            @media(max-width: $breakpoint){
-                position: absolute;
-                top:1rem;
-                right:1rem;
-                left:1rem;
-
-                .container{
-                    justify-content: flex-end;
-                }
-
-                .navbar-collapse{
-                    background-color: v.$color4;
-                    padding:1rem;
-                    margin-top: 3rem;
-                }
-            }
-
-            a{
-                @include m.flexbox($align-items: center, $gap:0.5rem);
-            }
-
-            .navbar-toggler{
-                background-color: v.$color2; 
-            }
-
-       
-        }
-
-
-    }
 }
+
+
+    
+
 
