@@ -1,14 +1,13 @@
 import React from 'react'
 import logo from '../../../../assets/img/lifecenter.png'
 import { Button, Container, Form, Nav, NavDropdown, Navbar, Row } from 'react-bootstrap';
+import "./header.scss"
 
 const Header = () => {
   return (
-      <div className='menubar'>
-          <Container className="p-0 fixed-top">
-              <div className='header'>
-              <Navbar expand="lg">
-            <Container className="ps-0">
+      <div className='home'>
+              <Navbar>
+            <Container className='container'>
               <Row>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -45,8 +44,6 @@ const Header = () => {
                 </Row>
               </Container>
             </Navbar>
-              </div>
-          </Container>
     </div>
   )
 }
