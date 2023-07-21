@@ -4,7 +4,7 @@ import UserTemplate from '../../templates/user-template'
 const HomePage = () => {
   return (
       <UserTemplate>
-          
+          Homepage
       </UserTemplate>
   )
 }
