@@ -4,6 +4,6 @@ import authSlice from "./slices/auth-slice";
 
 export default configureStore({
     reducer: {
-        auth:authSlice
+        auth: authSlice
     }
 })
