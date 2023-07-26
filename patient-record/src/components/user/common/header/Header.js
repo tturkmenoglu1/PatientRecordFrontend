@@ -5,11 +5,8 @@ import "./header.scss"
 
 const Header = () => {
   return (
-    <Container>
-      
       <div className='menu'>
-      <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+      <Navbar expand="lg" className="bg-body-tertiary p-3">
             <Navbar.Brand href="#">
             <div className="logo">
              <img src={logo} alt="" className='img-fluid'/>
@@ -36,10 +33,8 @@ const Header = () => {
             <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
       </div>
-      </Container>
   )
 }
 
