@@ -8,12 +8,20 @@ const HomePage = () => {
     <UserTemplate>
       <Container>
         <Row className="g-4">
-          <Col sm={6} md={4}>
+          <Col md={6}>
               <Card>
                 <Card.Title>
-                  "Patients"
+                  Hastalar
                 </Card.Title>
                 647
+              </Card>
+          </Col>
+          <Col md={6}>
+              <Card>
+                <Card.Title>
+                  Hesap Bakiye
+                </Card.Title>
+                6146447
               </Card>
           </Col>
         </Row>

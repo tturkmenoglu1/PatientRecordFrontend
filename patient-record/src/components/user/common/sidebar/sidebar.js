@@ -12,48 +12,24 @@ const Sidebar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Nav.Link>
-            Dashboard
+            Ana Sayfa
           </Nav.Link>
           <Nav.Link
           >
-            Products
+            Yeni Hasta Kaydı
           </Nav.Link>
           <Nav.Link
           >
-            Categories
+            Hastalar
           </Nav.Link>
           <Nav.Link
           >
-            Brands
+            Randevular
           </Nav.Link>
           <Nav.Link
           >
-            Users
+            Cari Hesap
           </Nav.Link>
-          <Nav.Link
-          >
-            Reviews
-          </Nav.Link>
-          <Nav.Link
-          >
-            Contact Messages
-          </Nav.Link>
-          <Nav.Link
-          >
-            Orders
-          </Nav.Link>
-          <Nav.Link
-          >
-            Coupons
-          </Nav.Link>
-          <Nav.Link
-          >
-            Reports
-          </Nav.Link>
-          <Nav.Link>
-            Web Site
-          </Nav.Link>
-          <Nav.Link> Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
