@@ -6,7 +6,7 @@ import "./sidebar.scss"
 
 const Sidebar = () => {
   return (
-    <Navbar bg="primary" expand="lg" className="admin-navbar" variant="dark">
+    <Navbar expand="lg" className="admin-navbar" variant="dark">
     <Container>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
