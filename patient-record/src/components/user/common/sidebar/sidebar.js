@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/img/lifecenter.png"
 import "./sidebar.scss"
 
@@ -11,7 +11,7 @@ const Sidebar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link>
+          <Nav.Link as={Link} to={"/"}>
             Ana Sayfa
           </Nav.Link>
           <Nav.Link
