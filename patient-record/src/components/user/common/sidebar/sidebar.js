@@ -1,10 +1,16 @@
 import React from 'react'
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../../../assets/img/lifecenter.png"
+import { question } from "../../../../helpers/functions/swal";
+import { useAppDispatch } from "../../../../store/hooks";
 import "./sidebar.scss"
 
+
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  
   return (
     <Navbar expand="lg" className="admin-navbar" variant="dark">
     <Container>
