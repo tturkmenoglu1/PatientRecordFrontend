@@ -1,8 +1,11 @@
 import React from 'react'
+import PatientList from '../../components/user/patient/patient-list'
 
 const Patience = () => {
   return (
-    <div>Patience</div>
+    <div>
+      <PatientList/>
+    </div>
   )
 }
 
