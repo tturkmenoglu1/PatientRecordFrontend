@@ -20,19 +20,19 @@ const Sidebar = () => {
           <Nav.Link as={Link} to={"/"}>
             Ana Sayfa
           </Nav.Link>
-          <Nav.Link
+          <Nav.Link as={Link} to={"/new-patience"}
           >
             Yeni Hasta Kaydı
           </Nav.Link>
-          <Nav.Link
+          <Nav.Link as={Link} to={"/patience"}
           >
             Hastalar
           </Nav.Link>
-          <Nav.Link
+          <Nav.Link as={Link} to={"/appointment"}
           >
             Randevular
           </Nav.Link>
-          <Nav.Link
+          <Nav.Link as={Link} to={"/transaction"}
           >
             Cari Hesap
           </Nav.Link>

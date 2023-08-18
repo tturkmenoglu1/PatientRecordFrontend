@@ -1,11 +1,13 @@
-import React from "react";
-import HomePage from "./pages/user/home-page";
+import React, { useEffect, useState } from "react";
 import CustomRoutes from "./router/custom-route";
+import { useAppDispatch } from "./store/hooks";
+import { toast } from "./helpers/functions/swal";
+
 
 const App = () => {
 
   return (
-    <div style={{ backgroundColor: "rgb(237, 237, 237)" }}>
+    <div style={{ backgroundColor: "rgb(0, 0, 0)" }}>
       <CustomRoutes/>
     </div>
   )
