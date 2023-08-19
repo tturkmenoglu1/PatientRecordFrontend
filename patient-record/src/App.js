@@ -7,7 +7,7 @@ import { toast } from "./helpers/functions/swal";
 const App = () => {
 
   return (
-    <div style={{ backgroundColor: "rgb(0, 0, 0)" }}>
+    <div>
       <CustomRoutes/>
     </div>
   )

@@ -93,9 +93,6 @@ const LoginForm = () => {
             checked={rememberMe}
             onChange={(e) => setRememberMe(e.target.checked)}
           />
-          <Link to="/forgot-password" style={{ textDecoration: "none" }}>
-            <Form.Text className="forgotText">Forgot password?</Form.Text>
-          </Link>
         </Form.Group>
 
         <Button

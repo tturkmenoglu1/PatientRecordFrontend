@@ -2,10 +2,10 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from '../pages/user/home-page'
 import Appointment from '../pages/user/appointment'
-import Patience from '../pages/user/patience'
+import Patient from '../pages/user/patient'
 import Transaction from '../pages/user/transaction'
 import NotFoundPage from "../pages/common/not-found-page"
-import NewPatience from '../pages/user/new-patience'
+import NewPatient from '../pages/user/new-patient-page'
 import LoginPage from '../pages/common/login-page'
 
 const CustomRoutes = () => {
@@ -16,8 +16,8 @@ const CustomRoutes = () => {
                   <Route index element={<LoginPage />} />
                   <Route path='home' element={<HomePage/>} />
                   <Route path='appointment' element={<Appointment />} />
-                  <Route path='new-patience' element={<NewPatience />} />
-                  <Route path='patience' element={<Patience/>}/>
+                  <Route path='new-patient' element={<NewPatient/>} />
+                  <Route path='patient' element={<Patient/>}/>
                   <Route path='transaction' element={<Transaction/>}/>
               </Route>
 
