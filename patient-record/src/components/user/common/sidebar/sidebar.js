@@ -20,11 +20,11 @@ const Sidebar = () => {
           <Nav.Link as={Link} to={"/home"}>
             Ana Sayfa
           </Nav.Link>
-          <Nav.Link as={Link} to={"/new-patience"}
+          <Nav.Link as={Link} to={"/new-patient"}
           >
             Yeni Hasta Kaydı
           </Nav.Link>
-          <Nav.Link as={Link} to={"/patience"}
+          <Nav.Link as={Link} to={"/patient"}
           >
             Hastalar
           </Nav.Link>
