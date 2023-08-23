@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { settings } from "../helpers/settings";
+import authHeader from "../helpers/functions/auth-header";
 
 const API_URL = settings.apiURL;
 
@@ -16,6 +17,6 @@ export const login = (credential) => {
 };
 
 export const getUser = () => {
-    return axios.get(`${API_URL}/users/auth`);
+    return axios.get(`${API_URL}/users/auth`, {headers: authHeader()});
   };
   

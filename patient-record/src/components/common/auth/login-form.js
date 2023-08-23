@@ -13,7 +13,6 @@ import { useAppDispatch } from "../../../store/hooks";
 import { loginFailed, loginSuccess } from "../../../store/slices/auth-slice";
 
 const LoginForm = () => {
-  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -31,16 +30,14 @@ const LoginForm = () => {
   const onSubmit = async (values) => {
     setLoading(true);
     try {
-      const respAuth = await login(values);
-      const storage = rememberMe ? encryptedLocalStorage : encryptedSessionStorage;
-      storage.setItem('token', respAuth.data.token);
+      const resp = await login(values);
+      encryptedLocalStorage.setItem("token", resp.data.token);
       const respUser = await getUser();
-      dispatch(loginSuccess(respUser.data));
-      navigate("/");
+      console.log(respUser.data);
+      navigate("/home")
     } catch (err) {
       dispatch(loginFailed());
-      const message = err.response ? err.response.data.message : err;
-      toast(message, "error");
+      toast(err.response.data.message, "error");
     } finally {
       setLoading(false);
     }
@@ -81,19 +78,6 @@ const LoginForm = () => {
           isValid={formik.touched.password && !formik.errors.password}
           error={formik.errors.password}
         />
-
-        <Form.Group
-          className="mb-3 rememberForgot"
-          controlId="formBasicCheckbox"
-        >
-          <Form.Check
-            type="checkbox"
-            label="Remember me"
-            name="rememberMe"
-            checked={rememberMe}
-            onChange={(e) => setRememberMe(e.target.checked)}
-          />
-        </Form.Group>
 
         <Button
           variant="secondary"

@@ -1,5 +1,5 @@
 export const settings = {
-    apiURL : "localhost:8080",
+    apiURL : "http://localhost:8080",
     siteName: "Patient Record System",
     // siteUrl : "patientrecordsystem.com",
     email : "support@letsrentalcar.com",
