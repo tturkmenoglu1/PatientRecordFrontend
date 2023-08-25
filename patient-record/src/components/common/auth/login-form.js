@@ -32,8 +32,7 @@ const LoginForm = () => {
     try {
       const resp = await login(values);
       encryptedLocalStorage.setItem("token", resp.data.token);
-      const respUser = await getUser();
-      console.log(respUser.data);
+      
       navigate("/home")
     } catch (err) {
       dispatch(loginFailed());

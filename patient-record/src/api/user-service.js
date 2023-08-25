@@ -18,5 +18,5 @@ export const login = (credential) => {
 
 export const getUser = () => {
     return axios.get(`${API_URL}/users/auth`, {headers: authHeader()});
-  };
+};
   

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { useNavigate } from "react-router-dom";
-import { Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import { getPatients } from "../../../api/patience-service";
 
@@ -20,7 +20,8 @@ const columns = [
 
 const PatientList = () => {
     const [patients, setPatients] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [filters, setFilters] = useState({ q: ""})
 
 
     const loadData = async () => {
@@ -36,15 +37,52 @@ const PatientList = () => {
     useEffect(() => {
         loadData(0);
         // eslint-disable-next-line
-      }, []);
+    }, []);
+  
+    const handleFilterChange = (e) => {
+      const name = e.target.name;
+      const value = name === "q" ? e.target.value : [e.target.value];
+  
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+  
+        [name]: value,
+      }));
+    };
 
   return (
+    <Container>
+    
+      <Row className="mt-5">
+        <Col md={12} className="mb-1">
+          <InputGroup>
+            <Form.Control
+              type="search"
+              name="q"
+              value={filters.q}
+              onChange={handleFilterChange}
+              placeholder="Search"
+            />
+            <InputGroup.Text>
+              <FaSearch />
+            </InputGroup.Text>
+            <Link to="/new-patient">
+              <Button variant="secondary">New Patient</Button>
+            </Link>
+          </InputGroup>
+        </Col>
+      </Row>
+
     <DataTable
         columns={columns}
           data={patients}
       >
           
       </DataTable>
+      
+    </Container>
+    
+    
   )
 }
 
