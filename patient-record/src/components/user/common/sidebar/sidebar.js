@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   
   return (
-    <Navbar expand="lg" className="admin-navbar" variant="dark">
+    <Navbar expand="lg" className="admin-navbar p-3" variant="dark">
     <Container>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -14,29 +14,58 @@ import {
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { question, toast } from "../../../helpers/functions/swal";
+import DatePicker from "react-datepicker";
 
 const NewPatient = () => {
   return (
-    <Container fluid className="product-new">
+    <Container fluid className="patient-new">
       <Form>
           <Row className="mt-5">
-            <Col xl={3} lg={3} md={4} sm={4} className="like-active mb-3">
-              <Form.Check
-              />
-
-              <Form.Check
-                label="New Product"
-              />
-              <Form.Check
-                label="Featured"
-              />
+          <Col xl={2} lg={2} md={4} sm={4} className="like-active mb-3">
+            <Form.Check
+              label="Erkek"
+            />
+            <Form.Check
+              label="Kadın"
+                  />
             </Col>
-            <Col xl={9} lg={9} md={8} sm={8}>
+            <Col xl={5} lg={5} md={4} sm={4}>
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label>İsim</Form.Label>
                   <Form.Control
                   />
+                  <Form.Control.Feedback type="invalid">
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+          </Col>
+          <Col xl={5} lg={5} md={4} sm={4}>
+              <Row className="row-cols-1 row-cols-md-1">
+                <Form.Group as={Col} className="mb-3">
+                  <Form.Label>Soy isim</Form.Label>
+                  <Form.Control
+                  />
+                  <Form.Control.Feedback type="invalid">
+                  </Form.Control.Feedback>
+                </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group>
+                <Form.Label>Tarih Seçin</Form.Label>
+                <br />
+                <DatePicker
+                  showTimeSelect
+                  dateFormat="Pp"
+                />
+              </Form.Group>
+            </Row>
+          </Col>
+          <Col xl={12} lg={12} md={12} sm={12}>
+              <Row className="row-cols-1 row-cols-md-1">
+                <Form.Group as={Col} className="mb-3">
+                <Form.Label>Şikayet</Form.Label>
+                <Form.Control as="textarea" rows={3} />
                   <Form.Control.Feedback type="invalid">
                   </Form.Control.Feedback>
                 </Form.Group>
