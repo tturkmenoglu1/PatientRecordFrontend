@@ -15,6 +15,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { question, toast } from "../../../helpers/functions/swal";
 import DatePicker from "react-datepicker";
+import ReactInputMask from "react-input-mask-next";
 
 const NewPatient = () => {
   return (
@@ -39,6 +40,14 @@ const NewPatient = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
+              <Row>
+                <Form.Group>
+                <Form.Label>Doğum Yeri</Form.Label>
+                  <Form.Control
+                    type="text"
+                  />
+                </Form.Group>
+              </Row>
           </Col>
           <Col xl={5} lg={5} md={4} sm={4}>
               <Row className="row-cols-1 row-cols-md-1">
@@ -52,11 +61,11 @@ const NewPatient = () => {
             </Row>
             <Row>
               <Form.Group>
-                <Form.Label>Tarih Seçin</Form.Label>
-                <br />
-                <DatePicker
-                  showTimeSelect
-                  dateFormat="Pp"
+              <Form.Label>Doğum tarihi</Form.Label>
+                <Form.Control
+                  type="text"
+                  as={ReactInputMask}
+                  mask="99-99-9999"
                 />
               </Form.Group>
             </Row>
