@@ -1,0 +1,93 @@
+/* BOOTSTRAP */
+/* SWEETALERT */
+.loginDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+}
+.loginDiv h3 {
+  font-weight: 600;
+  color: rgb(116, 116, 116);
+}
+.loginDiv form {
+  width: 30vw !important;
+  background-color: white;
+  border-radius: 0.3rem;
+}
+@media (max-width: 992px) {
+  .loginDiv form {
+    width: 50vw !important;
+  }
+}
+@media (max-width: 776px) {
+  .loginDiv form {
+    width: 80vw !important;
+  }
+}
+@media (max-width: 400px) {
+  .loginDiv form {
+    width: 100vw !important;
+  }
+}
+.loginDiv form .form-control {
+  background-color: rgb(237, 237, 237);
+}
+.loginDiv form .input-group > span.input-group-text {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+.loginDiv form .input-group > span.input-group-text svg {
+  color: rgb(13, 196, 28);
+}
+.loginDiv form .input-group > span.input-group-text:first-child svg {
+  font-size: 1.3rem;
+}
+.loginDiv form .input-group:nth-child(2) > span.input-group-text:nth-child(3), .loginDiv form .input-group:nth-child(3) > span.input-group-text:nth-child(3) {
+  border-top-right-radius: 0.3rem !important;
+  border-bottom-right-radius: 0.3rem !important;
+}
+.loginDiv form .input-group input.form-control.email-input {
+  border-top-right-radius: 0.3rem !important;
+  border-bottom-right-radius: 0.3rem !important;
+}
+.loginDiv form .rememberForgot {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+.loginDiv form .rememberForgot .form-check-input {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+}
+.loginDiv form .rememberForgot .form-check-label {
+  font-size: 0.9rem;
+  color: rgb(116, 116, 116);
+}
+.loginDiv form .form-text {
+  font-size: 0.85rem;
+}
+.loginDiv form .form-text:nth-child(2) {
+  cursor: pointer;
+  color: rgb(253, 253, 253);
+}
+.loginDiv form .forgotText {
+  color: rgb(253, 253, 253);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.loginDiv form .btn {
+  border-radius: 0.3rem;
+  color: white;
+  width: 50%;
+}
+.loginDiv form .btn:last-child {
+  background-color: rgb(116, 116, 116);
+}
+.loginDiv form .btn:last-child:hover {
+  background-color: rgb(13, 196, 28);
+}/*# sourceMappingURL=login-form.css.map */

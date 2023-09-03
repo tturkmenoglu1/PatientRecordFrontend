@@ -1,0 +1,33 @@
+/* BOOTSTRAP */
+/* SWEETALERT */
+.navbar {
+  background-color: rgb(48, 48, 48);
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .navbar .navbar-nav {
+    flex-direction: column !important;
+  }
+}
+.navbar .navbar-nav .link {
+  color: rgb(237, 237, 237);
+  padding: 0.4rem;
+}
+@media (max-width: 991px) {
+  .navbar .navbar-nav .link {
+    margin-left: 1rem;
+  }
+}
+@media (min-width: 990px) {
+  .navbar .navbar-nav .link {
+    margin-left: 1rem;
+  }
+}
+@media (min-width: 992px) {
+  .navbar .navbar-nav .link {
+    margin-left: 0;
+  }
+}
+.navbar .navbar-nav .link:hover {
+  color: rgb(253, 253, 253);
+}/*# sourceMappingURL=sidebar.css.map */
