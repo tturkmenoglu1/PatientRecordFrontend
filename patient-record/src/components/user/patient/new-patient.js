@@ -73,6 +73,7 @@ const NewPatient = () => {
       await addPatient(values);
       toast("Hasta kaydedildi", "success");
       navigate(-1);
+      console.log([{values}])
     } catch (err) {
       const message = err.response ? err.response.data.message : err;
       toast(message, "error");
