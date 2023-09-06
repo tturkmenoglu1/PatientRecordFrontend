@@ -8,16 +8,11 @@ import {
   Col,
   ButtonGroup,
   Spinner,
-  Badge,
   Container,
-  Card,
-  Alert,
 } from "react-bootstrap";
-import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { addPatient } from "../../../api/patience-service";
 import { question, toast } from "../../../helpers/functions/swal";
-import DatePicker from "react-datepicker";
 import ReactInputMask from "react-input-mask-next";
 
 const NewPatient = () => {
@@ -73,7 +68,7 @@ const NewPatient = () => {
       await addPatient(values);
       toast("Hasta kaydedildi", "success");
       navigate(-1);
-      console.log([{values}])
+      console.log(values);
     } catch (err) {
       const message = err.response ? err.response.data.message : err;
       toast(message, "error");
@@ -90,13 +85,15 @@ const NewPatient = () => {
     onSubmit,
   });
 
+  useEffect(() => {
 
+  }, []);
 
 
 
   return (
     <Container fluid className="patient-new">
-      <Form>
+      <Form noValidate onSubmit={formik.handleSubmit}>
           <Row className="mt-5">
           <Col xl={2} lg={2} md={4} sm={4} className="like-active mb-3">
             <Form.Check label="Erkek"/>
@@ -225,10 +222,9 @@ const NewPatient = () => {
           
 
           <ButtonGroup className="mt-5">
-          <Button
+              <Button
                 variant="primary"
-                type="submit"
-              >
+                type="submit">
                 {updating && <Spinner animation="border" size="sm" />} Create
               </Button>
             </ButtonGroup>
