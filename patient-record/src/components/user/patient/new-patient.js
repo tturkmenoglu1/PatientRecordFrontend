@@ -20,31 +20,29 @@ const NewPatient = () => {
   const [updating, setUpdating] = useState(false);
   const navigate = useNavigate();
 
-
   const initialValues = {
-    groupName: "",
-    firstName: "",
-    lastName: "",
-    birthDate: "",
-    birthPlace: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    complain: "",
-    story: "",
-    treat: "",
-    medicine: "",
-    advice: ""
-  };
-
+    groupName: "TURKIYE",
+    firstName: "example",
+    lastName: "example",
+    birthDate: "2023-09-07",
+    birthPlace: "asdasdsa",
+    gender: "ERKEK",
+    email: "asdasdasd",
+    phoneNumber: "asdsadasd",
+    address: "asdsaddasdsadsa",
+    complain: "asdasdasdsadsada",
+    story: "asdasdasd",
+    treat: "asdasdsdasdasd",
+    medicine: "asdasdsadasd",
+    advice: "asdasdadasd",
+  }
 
   const validationSchema = Yup.object({
-      firstname: Yup.string()
+    firstName: Yup.string()
       .required("Lütfen isim girin")
       .min(3, "En az 3 karakterli olması lazım")
       .max(30, "En fazla 30 karakterli olması lazım"),
-      lastname: Yup.string() 
+      lastName: Yup.string() 
       .required("Lütfen soy isim girin")
       .min(3, "En az 3 karakterli olması lazım")
       .max(30, "En fazla 30 karakterli olması lazım"),
@@ -61,35 +59,19 @@ const NewPatient = () => {
       gender: Yup.boolean(),
   });
 
-
   const onSubmit = async (values) => {
-    setUpdating(true);
     try {
-      await addPatient(values);
-      toast("Hasta kaydedildi", "success");
-      navigate(-1);
-      console.log(values);
-    } catch (err) {
-      const message = err.response ? err.response.data.message : err;
-      toast(message, "error");
-    } finally {
-      setUpdating(false);
+      console.log(values)
+    } catch (error) {
+      toast(error)
     }
-  };
-
-
+  }
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
-  });
-
-  useEffect(() => {
-
-  }, []);
-
-
+  })
 
   return (
     <Container fluid className="patient-new">
@@ -120,7 +102,8 @@ const NewPatient = () => {
                 <Form.Group>
                 <Form.Label>Doğum Yeri</Form.Label>
                   <Form.Control
-                    type="text"
+                  type="text"
+                  {...formik.getFieldProps("birthPlace")}
                   />
                 </Form.Group>
             </Row>
@@ -128,7 +111,8 @@ const NewPatient = () => {
                 <Form.Group>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
-                   type="email"
+                  type="email"
+                  {...formik.getFieldProps("email")}
                  />
                 </Form.Group>
               </Row>
@@ -159,6 +143,7 @@ const NewPatient = () => {
                   type="text"
                   as={ReactInputMask}
                   mask="99-99-9999"
+                  {...formik.getFieldProps("birthDate")}
                 />
               </Form.Group>
             </Row>
@@ -168,7 +153,8 @@ const NewPatient = () => {
               <Form.Control
                  type="text"
                  as={ReactInputMask}
-                 mask="(999)-999-9999"
+                  mask="(999)-999-9999"
+                  {...formik.getFieldProps("phoneNumber")}
               />
               </Form.Group>
               
@@ -183,37 +169,37 @@ const NewPatient = () => {
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Adres</Form.Label>
-                <Form.Control as="textarea" rows={2} />
+                <Form.Control as="textarea" rows={2} {...formik.getFieldProps("address")}/>
                 </Form.Group>
               </Row>
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Şikayet</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("complain")}/>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Hikayesi</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("story")}/>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Yapılan tedavi</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("treat")}/>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Verilen ilaç</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("medicine")}/>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Tavsiyeler</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("advice")}/>
                 </Form.Group>
               </Row>
           </Col>
