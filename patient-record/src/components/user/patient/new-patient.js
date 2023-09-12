@@ -20,25 +20,27 @@ const NewPatient = () => {
   const [updating, setUpdating] = useState(false);
   const navigate = useNavigate();
 
+
   const initialValues = {
     groupName: "TURKIYE",
-    firstName: "example",
-    lastName: "example",
-    birthDate: "2023-09-07",
-    birthPlace: "asdasdsa",
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    birthPlace: "",
     gender: "ERKEK",
-    email: "asdasdasd",
-    phoneNumber: "asdsadasd",
-    address: "asdsaddasdsadsa",
-    complain: "asdasdasdsadsada",
-    story: "asdasdasd",
-    treat: "asdasdsdasdasd",
-    medicine: "asdasdsadasd",
-    advice: "asdasdadasd",
-  }
+    email: "",
+    phoneNumber: "",
+    address: "",
+    complain: "",
+    story: "",
+    treat: "",
+    medicine: "",
+    advice: "",
+  };
+
 
   const validationSchema = Yup.object({
-    firstName: Yup.string()
+      firstName: Yup.string()
       .required("Lütfen isim girin")
       .min(3, "En az 3 karakterli olması lazım")
       .max(30, "En fazla 30 karakterli olması lazım"),
@@ -46,7 +48,7 @@ const NewPatient = () => {
       .required("Lütfen soy isim girin")
       .min(3, "En az 3 karakterli olması lazım")
       .max(30, "En fazla 30 karakterli olması lazım"),
-      birthDate: Yup.number().required("Please enter stock amount"),
+      birthDate: Yup.string(),
       birthPlace: Yup.string().max(30, "En fazla 30 karakterli olması lazım"),
       email: Yup.string().max(100, "En fazla 100 karakterli olması lazım"),
       phoneNumber: Yup.string().max(15, "En fazla 15 karakterli olması lazım"),
@@ -56,22 +58,31 @@ const NewPatient = () => {
       treat: Yup.string().max(300, "En fazla 300 karakterli olması lazım"),
       medicine: Yup.string().max(100, "En fazla 100 karakterli olması lazım"),
       advice: Yup.string().max(500, "En fazla 500 karakterli olması lazım"),
-      gender: Yup.boolean(),
   });
 
+
   const onSubmit = async (values) => {
+    setUpdating(true);
     try {
-      console.log(values)
-    } catch (error) {
-      toast(error)
+      const response = await addPatient(values);
+      toast("Hasta kaydedildi", "success");
+      console.log(response);
+    } catch (err) {
+      const message = err.response ? err.response.data.message : err;
+      toast(message, "error");
+    } finally {
+      setUpdating(false);
     }
-  }
+  };
+
+
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
-  })
+  });
+
 
   return (
     <Container fluid className="patient-new">
@@ -104,7 +115,12 @@ const NewPatient = () => {
                   <Form.Control
                   type="text"
                   {...formik.getFieldProps("birthPlace")}
+                    isValid={formik.touched.birthPlace && !formik.errors.birthPlace}
+                    isInvalid={formik.touched.birthPlace && !!formik.errors.birthPlace}
                   />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.birthPlace}
+                </Form.Control.Feedback>
                 </Form.Group>
             </Row>
             <Row>
@@ -113,7 +129,12 @@ const NewPatient = () => {
                 <Form.Control
                   type="email"
                   {...formik.getFieldProps("email")}
-                 />
+                    isValid={formik.touched.email && !formik.errors.email}
+                    isInvalid={formik.touched.email && !!formik.errors.email}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.email}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Row>
           </Col>
@@ -144,7 +165,12 @@ const NewPatient = () => {
                   as={ReactInputMask}
                   mask="99-99-9999"
                   {...formik.getFieldProps("birthDate")}
-                />
+                    isValid={formik.touched.birthDate && !formik.errors.birthDate}
+                    isInvalid={formik.touched.birthDate && !!formik.errors.birthDate}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.birthDate}
+                </Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row>
@@ -155,7 +181,12 @@ const NewPatient = () => {
                  as={ReactInputMask}
                   mask="(999)-999-9999"
                   {...formik.getFieldProps("phoneNumber")}
-              />
+                  isValid={formik.touched.phoneNumber && !formik.errors.phoneNumber}
+                    isInvalid={formik.touched.phoneNumber && !!formik.errors.phoneNumber}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.phoneNumber}
+                </Form.Control.Feedback>
               </Form.Group>
               
             </Row>
@@ -169,37 +200,81 @@ const NewPatient = () => {
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Adres</Form.Label>
-                <Form.Control as="textarea" rows={2} {...formik.getFieldProps("address")}/>
+                <Form.Control as="textarea" rows={2} 
+                  {...formik.getFieldProps("address")}
+                isValid={formik.touched.address && !formik.errors.address}
+                    isInvalid={formik.touched.address && !!formik.errors.address}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.address}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Row>
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Şikayet</Form.Label>
-                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("complain")}/>
+                <Form.Control as="textarea" rows={3} 
+                  {...formik.getFieldProps("complain")}
+                isValid={formik.touched.complain && !formik.errors.complain}
+                    isInvalid={formik.touched.complain && !!formik.errors.complain}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.complain}
+                </Form.Control.Feedback>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Hikayesi</Form.Label>
-                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("story")}/>
+                <Form.Control as="textarea" rows={3} 
+                  {...formik.getFieldProps("story")}
+                isValid={formik.touched.story && !formik.errors.story}
+                    isInvalid={formik.touched.story && !!formik.errors.story}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.story}
+                </Form.Control.Feedback>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Yapılan tedavi</Form.Label>
-                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("treat")}/>
+                <Form.Control as="textarea" rows={3} 
+                  {...formik.getFieldProps("treat")}
+                isValid={formik.touched.treat && !formik.errors.treat}
+                    isInvalid={formik.touched.treat && !!formik.errors.treat}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.treat}
+                </Form.Control.Feedback>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Verilen ilaç</Form.Label>
-                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("medicine")}/>
+                <Form.Control as="textarea" rows={3} 
+                  {...formik.getFieldProps("medicine")}
+                isValid={formik.touched.medicine && !formik.errors.medicine}
+                    isInvalid={formik.touched.medicine && !!formik.errors.medicine}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.medicine}
+                </Form.Control.Feedback>
                 </Form.Group>
             </Row>
             <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
                 <Form.Label>Tavsiyeler</Form.Label>
-                <Form.Control as="textarea" rows={3} {...formik.getFieldProps("advice")}/>
+                <Form.Control
+                  as="textarea"
+                  rows={3} 
+                  {...formik.getFieldProps("advice")}
+                    isValid={formik.touched.advice && !formik.errors.advice}
+                    isInvalid={formik.touched.advice && !!formik.errors.advice}
+                  />
+                <Form.Control.Feedback type="invalid">
+                {formik.errors.advice}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Row>
           </Col>

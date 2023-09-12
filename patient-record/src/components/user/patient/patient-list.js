@@ -7,15 +7,19 @@ import { getPatients } from "../../../api/patience-service";
 
 const columns = [
     {
-      name: "firstName",
+      name: "Isim",
       selector: (row) => row.firstName,
       sortable: true,
     },
     {
-      name: "lastName",
+      name: "Soy isim",
       selector: (row) => row.lastName,
       sortable: true,
-    },
+  },
+  {
+    name: "Telefon",
+    selector: (row) => row.phoneNumber,
+    }
   ];
 
 const PatientList = () => {
