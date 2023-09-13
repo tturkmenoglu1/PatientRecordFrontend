@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment ,useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, InputGroup, Pagination, Row } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-import { getPatients, getPatientsByPage } from "../../../api/patience-service";
+import { getPatientsByPage } from "../../../api/patience-service";
 import { toast } from "../../../helpers/functions/swal";
 
 const columns = [
@@ -26,66 +26,51 @@ const columns = [
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
   const navigate = useNavigate();
-  const [sortValue, setSortValue] = useState("id");
-  const [directionValue, setDirectionValue] = useState("DESC");
-  const [paging, setPaging] = useState({});
-  const [filters, setFilters] = useState({ q: "" })
+  const [perPage, setPerPage] = useState(10);
+  const [totalRows, setTotalRows] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
 
 
-    const loadData = async () => {
+    const loadData = async (page) => {
         try {
-          // const resp = await getPatients();
-          // setPatients(resp.data);
+          const resp = await getPatientsByPage(page, perPage);
+          const { content, totalElements } = resp.data;
+          setPatients(content);
+          setTotalRows(totalElements)
         } catch (err) {
           console.log(err);
         } finally {
+          setLoading(false);
         }
-    };
-    
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        getPatientsPage(0);
-      }, 1000);
-      return () => {
-        clearTimeout(timer);
-      }
-    }, [filters,sortValue,directionValue]);
+  };
   
+  const handlePageChange = (page) => {
+    loadData(page - 1);
+  };
+
+  const handleRowClicked = (row) => {
+    navigate(`/patient/${row.id}`);
+  };
+
+    
     useEffect(() => {
       loadData(0);
       // eslint-disable-next-line
   }, []);
   
-    const getPatientsPage = async (page) => {
-      try {
-        const resp = await getPatientsByPage({
-          q: filters.q,
-          name: filters.categories,
-          lastName: filters.brands,
-          phoneNumber: filters.number,
-          page,
-          sort: sortValue,
-          direction: directionValue
-        });
-        const { content, totalPages, pageable } = resp.data;
-        setPatients(content);
-        setPaging({ totalPages, pageNumber: pageable.pageNumber });
-      } catch (err) {
-        const message = err.response ? err.response.data.message : err;
-        toast(message, "error");
-      }
-    };
-  
-    const handleFilterChange = (e) => {
-      const name = e.target.name;
-      const value = name === "q" ? e.target.value : [e.target.value];
-  
-      setFilters((prevFilters) => ({
-        ...prevFilters,
-  
-        [name]: value,
-      }));
-    };
+  const handlePerRowsChange = async (newPerPage, page) => {
+    try {
+      const resp = await getPatientsByPage(page - 1, newPerPage);
+      const { content } = resp.data;
+      setPatients(content);
+      setPerPage(newPerPage);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container>
@@ -95,29 +80,10 @@ const PatientList = () => {
           <InputGroup>
             <Form.Control
               type="search"
-              name="name"
-              value={filters.name}
-              onChange={handleFilterChange}
-              placeholder="Isim"
-              className="ms-2"
-            />
-
-            <Form.Control
-              type="search"
-              name="lastName"
-              value={filters.lastName}
-              onChange={handleFilterChange}
-              placeholder="Soy isim"
-              className="ms-2"
-            />
-            
-            <Form.Control
-              type="search"
-              name="phoneNumber"
-              value={filters.phoneNumber}
-              onChange={handleFilterChange}
-              placeholder="Telefon Numarası"
-              className="ms-2"
+              placeholder="Ara"
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+              }}
             />
             <InputGroup.Text>
               <FaSearch />
@@ -129,13 +95,28 @@ const PatientList = () => {
         </Col>
       </Row>
 
-    <DataTable
+      <DataTable
         columns={columns}
-          data={patients}
-      >
-          
-      </DataTable>
-      
+        data={patients.filter((item) => {
+          if (searchValue === "") {
+            return item;
+          } else if (
+            item.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+            item.lastName.toLowerCase().includes(searchValue.toLowerCase()) ||
+            item.phoneNumber.toLowerCase().includes(searchValue.toLowerCase())
+          ) {
+            return item;
+          }
+        })}
+        progressPending={loading}
+        pagination
+        paginationServer
+        paginationTotalRows={totalRows}
+        onChangeRowsPerPage={handlePerRowsChange}
+        onChangePage={handlePageChange}
+        onRowClicked={handleRowClicked}
+      />
+        
     </Container>
     
     

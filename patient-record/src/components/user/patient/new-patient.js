@@ -22,12 +22,12 @@ const NewPatient = () => {
 
 
   const initialValues = {
-    groupName: "TURKIYE",
+    groupName: 1,
     firstName: "",
     lastName: "",
     birthDate: "",
     birthPlace: "",
-    gender: "ERKEK",
+    gender: 1,
     email: "",
     phoneNumber: "",
     address: "",
