@@ -9,6 +9,10 @@ export const getPatients = () => {
     return axios.get(`${API_URL}/patient/all`, {headers: authHeader()});
 };
 
+export const getPatientById = (id) => {
+  return axios.get(`${API_URL}/patient/${id}`, {headers: authHeader()});
+};
+
 export const addPatient = (patient) => {
   return axios.post(`${API_URL}/patient/admin/add`, patient, {headers: authHeader()});
 };
@@ -19,7 +23,7 @@ export const getPatientsByPage = ({
   lastName="",
   phoneNumber = "",
   page = 0,
-  size = 12,
+  size = 10,
   sort = "id",
   direction = "ASC",
 }) => {
