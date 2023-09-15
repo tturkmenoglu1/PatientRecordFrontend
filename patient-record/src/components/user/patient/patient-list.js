@@ -15,7 +15,7 @@ const PatientList = () => {
   const [paging, setPaging] = useState({});
   const [sortValue, setSortValue] = useState("id");
   const [directionValue, setDirectionValue] = useState("DESC");
-  const [filters, setFilters] = useState({ q: "", name:"", lastName:"", phoneNumber:""});
+  const [filters, setFilters] = useState({ q: "", firstName:"", lastName:"", phoneNumber:""});
 
 
 
@@ -33,7 +33,7 @@ const PatientList = () => {
     try {
       const resp = await getPatientsByPage({
         q: filters.q,
-        name: filters.name,
+        firstName: filters.firstName,
         lastName: filters.lastName,
         phoneNumber: filters.phoneNumber,
         page,
@@ -57,7 +57,7 @@ const PatientList = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       getPatients(0);
-    }, 1000);
+    }, 500);
     return () => {
       clearTimeout(timer);
     };
@@ -67,7 +67,7 @@ const PatientList = () => {
 
   const handleFilterChange = (e) => {
     const name = e.target.name;
-    const value = name === "q" ? e.target.value : [e.target.value];
+    const value = e.target.value;
 
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -81,19 +81,35 @@ const PatientList = () => {
     
       <Row className="mt-5">
         <Col md={12} className="mb-1">
-          <InputGroup>
+          <InputGroup className="mb-3">
             <Form.Control
               type="search"
-              name="q"
-              placeholder="Ara"
-              value={filters.q}
+              name="firstName"
+              placeholder="İsim"
+              value={filters.firstName}
+              onChange={handleFilterChange}
+            />
+            <Form.Control
+              type="search"
+              name="lastName"
+              placeholder="Soy isim"
+              value={filters.lastName}
+              className="ms-2"
+              onChange={handleFilterChange}
+            />
+            <Form.Control
+              type="search"
+              name="phoneNumber"
+              placeholder="Telefon Numarası"
+              value={filters.phoneNumber}
+              className="ms-2"
               onChange={handleFilterChange}
             />
             <InputGroup.Text>
               <FaSearch />
             </InputGroup.Text>
             <Link to="/new-patient">
-              <Button variant="secondary">New Patient</Button>
+              <Button variant="secondary">Yeni Hasta</Button>
             </Link>
           </InputGroup>
         </Col>
@@ -109,7 +125,7 @@ const PatientList = () => {
               <Card>
                 <Row className="content">
                   <Col md={8}>
-                    <Card.Title>{patient.name} {patient.lastName}</Card.Title>
+                    <Card.Title>{patient.firstName + ' '+ patient.lastName}</Card.Title>
                     <Row>
                       <Col xs={6} sm={4}>
                         <span>{patient.phoneNumber}</span>

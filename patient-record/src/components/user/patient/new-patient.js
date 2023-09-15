@@ -14,20 +14,37 @@ import { useNavigate } from "react-router-dom";
 import { addPatient } from "../../../api/patience-service";
 import { question, toast } from "../../../helpers/functions/swal";
 import ReactInputMask from "react-input-mask-next";
+import { getGendersOption } from "../../../api/gender-service";
+import { getNationsOption } from "../../../api/nationality-service";
 
 const NewPatient = () => {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const navigate = useNavigate();
+  const [genderIdData, setGenderIdData] = useState([])
+  const [nationalityIdData, setNationalityIdData] = useState([])
+
+  const loadData = async () => {
+    try {
+      const genderResp = await getGendersOption();
+      const nationResp = await getNationsOption();
+      setGenderIdData(genderResp.data);
+      setNationalityIdData(nationResp.data);
+    } catch (err) {
+      toast(err.response.data.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   const initialValues = {
-    groupName: 1,
+    nationalityId: "",
     firstName: "",
     lastName: "",
     birthDate: "",
     birthPlace: "",
-    gender: 1,
+    genderId: "",
     email: "",
     phoneNumber: "",
     address: "",
@@ -76,20 +93,76 @@ const NewPatient = () => {
   };
 
 
-
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
   });
 
+  useEffect(() => {
+    loadData();
+  }, [])
+  
+
 
   return (
     <Container fluid className="patient-new">
       <Form noValidate onSubmit={formik.handleSubmit}>
           <Row className="mt-5">
-          <Col xl={2} lg={2} md={4} sm={4} className="like-active mb-3">
-            <Form.Check label="Erkek"/>
+          <Col xl={2} lg={2} md={4} sm={4} className="like-active">
+          <Form.Group as={Col} className="mb-3">
+            <Form.Label>Cinsiyet</Form.Label>
+              <Form.Select
+                  name="number"
+                  className="mb-2 mt-2"
+                  {...formik.getFieldProps("genderId")}
+                  isValid={
+                    formik.touched.genderId && !formik.errors.genderId
+                  }
+                  isInvalid={
+                    formik.touched.genderId && !!formik.errors.genderId
+                  }
+              >
+                <option value="">Select Gender</option>
+                {genderIdData.map((option) => {
+                  return (
+                    <option className="py-2" value={option.id} key={option.id}>
+                      {option.gender}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.genderId}
+                </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} className="mb-3">
+            <Form.Label>Milliyet</Form.Label>
+              <Form.Select
+                name="number"
+                className="mb-2 mt-2"
+                  {...formik.getFieldProps("nationalityId")}
+                  isValid={
+                    formik.touched.nationalityId && !formik.errors.nationalityId
+                  }
+                  isInvalid={
+                    formik.touched.nationalityId && !!formik.errors.nationalityId
+                  }
+              >
+            <option value="">Select Nation</option>
+            {nationalityIdData.map((option) => {
+              return (
+                <option className="py-2" value={option.id} key={option.id}>
+                  {option.nationality}
+                </option>
+              );
+            })}
+            </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.nationality}
+                </Form.Control.Feedback>
+          </Form.Group>
           </Col>
 
 

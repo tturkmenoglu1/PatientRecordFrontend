@@ -19,7 +19,7 @@ export const addPatient = (patient) => {
   
 export const getPatientsByPage = ({
   q="",
-  name="",
+  firstName="",
   lastName="",
   phoneNumber = "",
   page = 0,
@@ -27,13 +27,8 @@ export const getPatientsByPage = ({
   sort = "id",
   direction = "ASC",
 }) => {
-  const qQ = q.length ? `&q=${q.join(",")}` : "";
-  const nameQ = name.length ? `&name=${name.join(",")}` : "";
-  const lastNameQ = lastName.length ? `&lastName=${lastName.join(",")}` : "";
-  const phoneNumberQ = phoneNumber.length ? `&phoneNumber=${phoneNumber.join(",")}` : "";
-
   return axios.get(
-    `${API_URL}/patient/all/page?${qQ}${nameQ}${lastNameQ}${phoneNumberQ}&page=${page}&size=${size}&sort=${sort}&direction=${direction}`,
+    `${API_URL}/patient/all/page?q=${q}&firstName=${firstName}&lastName=${lastName}&phoneNumber=${phoneNumber}&page=${page}&size=${size}&sort=${sort}&direction=${direction}`,
     {
       headers: authHeader(),
     }
