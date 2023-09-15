@@ -2,7 +2,7 @@ import React from 'react'
 import PatientList from '../../components/user/patient/patient-list'
 import UserTemplate from '../../templates/user-template'
 
-const Patience = () => {
+const Patient = () => {
   return (
     <UserTemplate>
       <PatientList/>
@@ -10,4 +10,4 @@ const Patience = () => {
   )
 }
 
-export default Patience
+export default Patient

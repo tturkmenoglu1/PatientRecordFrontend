@@ -27,6 +27,10 @@ const Sidebar = () => {
           <Nav.Link as={Link} to={"/patient"}
           >
             Hastalar
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/new-appointment"}
+          >
+            Yeni Randevu
           </Nav.Link>
           <Nav.Link as={Link} to={"/appointment"}
           >

@@ -1,8 +1,11 @@
 import React from 'react'
+import UserTemplate from '../../templates/user-template'
 
 const Appointment = () => {
   return (
-    <div>Appointment</div>
+    <UserTemplate>
+      Appointment
+    </UserTemplate>
   )
 }
 

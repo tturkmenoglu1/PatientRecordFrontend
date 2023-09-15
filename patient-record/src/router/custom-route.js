@@ -7,6 +7,7 @@ import Transaction from '../pages/user/transaction'
 import NotFoundPage from "../pages/common/not-found-page"
 import NewPatient from '../pages/user/new-patient-page'
 import LoginPage from '../pages/common/login-page'
+import NewAppointmentPage from '../pages/user/new-appointment-page'
 
 const CustomRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const CustomRoutes = () => {
                   <Route index element={<LoginPage />} />
                   <Route path='home' element={<HomePage/>} />
                   <Route path='appointment' element={<Appointment />} />
+                  <Route path='new-appointment' element={<NewAppointmentPage />} />
                   <Route path='new-patient' element={<NewPatient/>} />
                   <Route path='patient' element={<Patient/>}/>
                   <Route path='transaction' element={<Transaction/>}/>
