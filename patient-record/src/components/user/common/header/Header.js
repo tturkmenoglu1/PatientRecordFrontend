@@ -2,14 +2,15 @@ import React from 'react'
 import logo from '../../../../assets/img/lifecenter.png'
 import { Button, Container, Form, Nav, NavDropdown, Navbar, Row } from 'react-bootstrap';
 import "./header.scss"
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
       <div className='menu'>
       <Navbar expand="lg" className="bg-body-tertiary p-3">
-            <Navbar.Brand href="#">
+            <Navbar.Brand as={Link} to={"/home"}>
             <div className="logo">
-             <img src={logo} alt="" className='img-fluid'/>
+             <img src={logo} alt="Life Center" className='img-fluid'/>
              </div>
            </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

@@ -106,7 +106,7 @@ const NewPatient = () => {
 
 
   return (
-    <Container fluid className="patient-new">
+    <Container  className="patient-new">
       <Form noValidate onSubmit={formik.handleSubmit}>
           <Row className="mt-5">
           <Col xl={2} lg={2} md={4} sm={4} className="like-active">
@@ -123,7 +123,7 @@ const NewPatient = () => {
                     formik.touched.genderId && !!formik.errors.genderId
                   }
               >
-                <option value="">Select Gender</option>
+                <option value="">Cinsiyet Seçin</option>
                 {genderIdData.map((option) => {
                   return (
                     <option className="py-2" value={option.id} key={option.id}>
@@ -150,7 +150,7 @@ const NewPatient = () => {
                     formik.touched.nationalityId && !!formik.errors.nationalityId
                   }
               >
-            <option value="">Select Nation</option>
+            <option value="">Milliyet Seçin</option>
             {nationalityIdData.map((option) => {
               return (
                 <option className="py-2" value={option.id} key={option.id}>

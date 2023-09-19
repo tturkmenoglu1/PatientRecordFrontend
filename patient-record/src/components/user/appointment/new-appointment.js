@@ -1,11 +1,12 @@
-import { Form, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import React, { useEffect } from 'react'
 import * as Yup from "yup";
-import { addAppointment } from '../../../api/appointment';
+import { addAppointment } from '../../../api/appointment-service';
 import { toast } from '../../../helpers/functions/swal';
 import { useState } from 'react';
 import { getPatients } from '../../../api/patience-service';
-import { Button, ButtonGroup, Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Form, Container, Row, Spinner } from 'react-bootstrap';
+import { combineDateAndTime, getCurrentDate } from '../../../helpers/functions/date-time';
 
 const NewAppointment = () => {
   const [loading, setLoading] = useState(false);
@@ -22,22 +23,34 @@ const NewAppointment = () => {
 
   const initialValues = {
     patientId: "",
-    // appointmentDate: "",
-    // about: "",
+    appointmentDay: "",
+    appointmentTime: "",
+    about: "",
   }
 
   const validationSchema = Yup.object({
     patientId: Yup.number().required("Hasta seçin"),
-    // appointmentDate: Yup.string().required("Tarih belirtin"),
-    // about: Yup.string().max(2000,"maksimum 2000 karakter"),
+    appointmentDay: Yup.string().required("Tarih belirtin"),
+    appointmentTime: Yup.string().required("Zaman belirtin"),
+    about: Yup.string().max(2000,"maksimum 2000 karakter"),
   });
 
   const onSubmit = async (values) => {
+
+    const { appointmentDay, appointmentTime, about, patientId } = values;
+
+    const dto = {
+      patientId,
+      appointmentDate: combineDateAndTime(appointmentDay, appointmentTime),
+      about,
+    }
+
     setLoading(true);
     try {
-      const response = await addAppointment(values);
+      const response = await addAppointment(dto);
       toast("Randevu kaydedildi", "success");
       console.log(response)
+      formik.resetForm();
     } catch (error) {
       toast(error.response.data.message, "error");
     }finally {
@@ -78,8 +91,8 @@ const NewAppointment = () => {
                 <option>Hasta</option>
                 {patientIdData.map((option) => {
                   return (
-                    <option value={option.id} key={option.id}>
-                      {option.firstName + " "+ option.lastName}
+                    <option className="py-2" value={option.id} key={option.id}>
+                      {option.firstName + " " + option.lastName}
                     </option>
                   )
                 })} 
@@ -89,14 +102,69 @@ const NewAppointment = () => {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <ButtonGroup className="mt-5">
+          
+        </Row>
+
+        <Row>
+          <Col>
+          <Form.Group>
+          <Form.Label>Randevu tarihi</Form.Label>
+            <Form.Control
+              type="date"
+              min={getCurrentDate}
+              {...formik.getFieldProps("appointmentDay")}
+                isValid={formik.touched.appointmentDay && !formik.errors.appointmentDay}
+                isInvalid={formik.touched.appointmentDay && !!formik.errors.appointmentDay}
+              />
+            <Form.Control.Feedback type="invalid">
+            {formik.errors.appointmentDay}
+            </Form.Control.Feedback>
+          </Form.Group>
+          </Col>
+
+          <Col>
+          <Form.Group>
+          <Form.Label>Randevu Zamani</Form.Label>
+            <Form.Control
+              type="time"
+              step={900}
+                min="7:00"
+                max="21:00"
+              {...formik.getFieldProps("appointmentTime")}
+                isValid={formik.touched.appointmentTime && !formik.errors.appointmentTime}
+                isInvalid={formik.touched.appointmentTime && !!formik.errors.appointmentTime}
+              />
+            <Form.Control.Feedback type="invalid">
+            {formik.errors.appointmentTime}
+            </Form.Control.Feedback>
+          </Form.Group>
+          </Col>
+        </Row>
+
+
+        <Row className="row-cols-1 row-cols-md-1">
+          <Form.Group as={Col} className="mb-3">
+          <Form.Label>Randevu Konusu</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3} 
+            {...formik.getFieldProps("about")}
+              isValid={formik.touched.about && !formik.errors.about}
+              isInvalid={formik.touched.about && !!formik.errors.about}
+            />
+          <Form.Control.Feedback type="invalid">
+          {formik.errors.about}
+          </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
+        <ButtonGroup className="mt-5">
               <Button
                 variant="primary"
                 type="submit">
                 {loading && <Spinner animation="border" size="sm" />} Create
               </Button>
             </ButtonGroup>
-        </Row>
       </Form>
     </Container>
   )
