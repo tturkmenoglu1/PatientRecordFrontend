@@ -20,7 +20,7 @@ const Sidebar = () => {
           <Nav.Link as={Link} to={"/home"}>
             Ana Sayfa
           </Nav.Link>
-          <Nav.Link as={Link} to={"/new-patient"}
+          <Nav.Link as={Link} to={"/patient/new"}
           >
             Yeni Hasta Kaydı
           </Nav.Link>
@@ -28,7 +28,7 @@ const Sidebar = () => {
           >
             Hastalar
             </Nav.Link>
-            <Nav.Link as={Link} to={"/new-appointment"}
+            <Nav.Link as={Link} to={"/appointment/new"}
           >
             Yeni Randevu
           </Nav.Link>

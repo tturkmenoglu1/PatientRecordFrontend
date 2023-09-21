@@ -14,7 +14,7 @@ export const getAppointmentById = (id) => {
 
 export const getAppointmentsByPage = (
     page = 0,
-    size = 10,
+    size = 2,
     sort = "id",
     direction = "ASC",
 ) => {

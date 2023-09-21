@@ -43,6 +43,7 @@ const PatientList = () => {
       const { content, totalPages, pageable } = resp.data;
       setPatients(content);
       setPaging({ totalPages, pageNumber: pageable.pageNumber });
+      console.log(content)
     } catch (err) {
       const message = err.response ? err.response.data.message : err;
       toast(message, "error");
@@ -79,7 +80,7 @@ const PatientList = () => {
   return (
     <Container>
     
-      <Row className="mt-5">
+      <Row>
         <Col md={12} className="mb-1">
           <InputGroup className="mb-3">
             <Form.Control

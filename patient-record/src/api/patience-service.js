@@ -13,6 +13,10 @@ export const getPatientById = (id) => {
   return axios.get(`${API_URL}/patient/${id}`, {headers: authHeader()});
 };
 
+export const deletePatientById = (id) => {
+  return axios.delete(`${API_URL}/patient/admin/${id}/auth`, {headers: authHeader()});
+};
+
 export const addPatient = (patient) => {
   return axios.post(`${API_URL}/patient/admin/add`, patient, {headers: authHeader()});
 };

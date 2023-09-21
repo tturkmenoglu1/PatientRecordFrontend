@@ -106,9 +106,9 @@ const NewPatient = () => {
 
 
   return (
-    <Container  className="patient-new">
+    <Container>
       <Form noValidate onSubmit={formik.handleSubmit}>
-          <Row className="mt-5">
+          <Row>
           <Col xl={2} lg={2} md={4} sm={4} className="like-active">
           <Form.Group as={Col} className="mb-3">
             <Form.Label>Cinsiyet</Form.Label>
