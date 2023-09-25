@@ -236,7 +236,7 @@ const NewPatient = () => {
                 <Form.Control
                   type="text"
                   as={ReactInputMask}
-                  mask="99-99-9999"
+                  mask="9999-99-99"
                   {...formik.getFieldProps("birthDate")}
                     isValid={formik.touched.birthDate && !formik.errors.birthDate}
                     isInvalid={formik.touched.birthDate && !!formik.errors.birthDate}
@@ -359,7 +359,7 @@ const NewPatient = () => {
               <Button
                 variant="primary"
                 type="submit">
-                {updating && <Spinner animation="border" size="sm" />} Create
+                {updating && <Spinner animation="border" size="sm" />} Oluştur
               </Button>
             </ButtonGroup>
 

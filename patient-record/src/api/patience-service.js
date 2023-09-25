@@ -20,6 +20,10 @@ export const deletePatientById = (id) => {
 export const addPatient = (patient) => {
   return axios.post(`${API_URL}/patient/admin/add`, patient, {headers: authHeader()});
 };
+
+export const updatePatient = (id, patient) => {
+  return axios.put(`${API_URL}/patient/${id}/update`, patient, {headers: authHeader()});
+};
   
 export const getPatientsByPage = ({
   q="",

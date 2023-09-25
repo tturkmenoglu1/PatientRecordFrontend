@@ -131,7 +131,7 @@ const PatientDetail = () => {
           </Row>
           <ButtonGroup>
             <Button className="me-4" variant="danger" onClick={handleDeletePatient}>Hastayı Sil</Button>
-            <Button as={Link} to={"update"}>
+            <Button as={Link} to={`/patient/${patient.id}/update`}>
               Hastayı Güncelle
             </Button>
           </ButtonGroup>
