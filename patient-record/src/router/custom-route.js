@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/user/home-page";
 import Patient from "../pages/user/patient";
-import Transaction from "../pages/user/transaction";
 import NotFoundPage from "../pages/common/not-found-page";
 import NewPatient from "../pages/user/new-patient-page";
 import LoginPage from "../pages/common/login-page";
@@ -11,6 +10,8 @@ import AppointmentPage from "../pages/user/appointment-page";
 import AppointmentDetailPage from "../pages/user/appointment-details-page";
 import PatientDetailPage from "../pages/user/patient-detail-page";
 import PatientUpdatePage from "../pages/user/patient-update-page";
+import NewTransactionPage from "../pages/user/new-transaction-page";
+import TransactionListPage from "../pages/user/transaction-list-page";
 
 const CustomRoutes = () => {
   return (
@@ -30,10 +31,13 @@ const CustomRoutes = () => {
             <Route path=":patientId" element={<PatientDetailPage />} />
             <Route path=":patientId/update" element={<PatientUpdatePage />} />
           </Route>
-          <Route path="transaction" element={<Transaction />} />
-        </Route>
+          <Route path="transaction" >
+              <Route index element={<TransactionListPage />}/>
+              <Route path="new" element={<NewTransactionPage />}/>
+          </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

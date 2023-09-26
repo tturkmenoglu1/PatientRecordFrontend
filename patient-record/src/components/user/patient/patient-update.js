@@ -91,6 +91,7 @@ const PatientUpdate = () => {
       const response = await updatePatient(patientId, values);
       toast("Hasta kaydedildi", "success");
       console.log(response);
+      navigate(-1);
     } catch (err) {
       const message = err.response ? err.response.data.message : err;
       toast(message, "error");

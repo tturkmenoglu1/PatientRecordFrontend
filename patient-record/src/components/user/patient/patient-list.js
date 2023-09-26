@@ -109,7 +109,7 @@ const PatientList = () => {
             <InputGroup.Text>
               <FaSearch />
             </InputGroup.Text>
-            <Link to="/new-patient">
+            <Link to="/patient/new">
               <Button variant="secondary">Yeni Hasta</Button>
             </Link>
           </InputGroup>
