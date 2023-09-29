@@ -12,6 +12,7 @@ import PatientDetailPage from "../pages/user/patient-detail-page";
 import PatientUpdatePage from "../pages/user/patient-update-page";
 import NewTransactionPage from "../pages/user/new-transaction-page";
 import TransactionListPage from "../pages/user/transaction-list-page";
+import TransactionDetailPage from "../pages/user/transaction-detail-page";
 
 const CustomRoutes = () => {
   return (
@@ -31,9 +32,10 @@ const CustomRoutes = () => {
             <Route path=":patientId" element={<PatientDetailPage />} />
             <Route path=":patientId/update" element={<PatientUpdatePage />} />
           </Route>
-          <Route path="transaction" >
-              <Route index element={<TransactionListPage />}/>
-              <Route path="new" element={<NewTransactionPage />}/>
+          <Route path="transaction">
+            <Route index element={<TransactionListPage />} />
+            <Route path="new" element={<NewTransactionPage />} />
+            <Route path=":transactionId" element={<TransactionDetailPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

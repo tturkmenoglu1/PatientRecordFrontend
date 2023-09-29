@@ -26,7 +26,7 @@ const PatientDetail = () => {
       setPatient(resp.data);
       console.log(resp.data);
     } catch (error) {
-      console.error(error);
+      toast(error.response.data.message, "error");
     } finally {
       setLoading(false);
     }
