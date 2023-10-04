@@ -12,6 +12,7 @@ const TransactionDetail = () => {
   const [loading, setLoading] = useState(false);
   const { transactionId } = useParams();
   const [patient, setPatient] = useState({})
+  const [paymentMethod, setPaymentMethod] = useState();
 
   const loadData = async () => {
     setLoading(true);
@@ -19,6 +20,7 @@ const TransactionDetail = () => {
       const response = await getTransactionById(transactionId);
       setTransaction(response.data);
       setPatient(response.data.patient)
+      handlePaymentMethod(response.data.payment)
       console.log(response);
     } catch (error) {
       toast(error.response.data.message, "error");
@@ -26,6 +28,22 @@ const TransactionDetail = () => {
       setLoading(false);
     }
   };
+
+  const handlePaymentMethod = (payment) => {
+    switch (payment) {
+      case "CREDIT_CARD":
+        setPaymentMethod("Kredi Kartı")
+        break;
+      
+      case "CASH":
+        setPaymentMethod("Nakit")
+        break;
+      
+      case "TRANSFER":
+        setPaymentMethod("Transfer")
+        break;
+    }
+  }
 
   useEffect(() => {
     loadData();
@@ -50,7 +68,7 @@ const TransactionDetail = () => {
                 </tr>
                 <tr>
                   <td>Ödeme yöntemi</td>
-                  <td>{transaction.payment}</td>
+                  <td>{paymentMethod}</td>
                 </tr>
                 <tr>
                   <td>Ödeme</td>
