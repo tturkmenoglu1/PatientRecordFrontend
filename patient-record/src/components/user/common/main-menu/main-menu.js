@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Col, Container , Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { getStatistics } from '../../../../api/database-service'
 
 const MainMenu = () => {
+  const [statistics, setStatistics] = useState({});
+
+
+  const loadData = async () => {
+    try {
+      const response = await getStatistics();
+      setStatistics(response.data);
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    loadData();
+  
+  }, [])
+
   return (
       <div>
           <Container>
@@ -12,7 +29,7 @@ const MainMenu = () => {
                 <Card.Title>
                   Hastalar
                 </Card.Title>
-                647
+                {statistics.patientCount}
               </Card>
           </Col>
           <Col md={6}>

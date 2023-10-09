@@ -16,23 +16,14 @@ const Header = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="ms-auto me-4"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <NavDropdown title="Bildirim" id="navbarScrollingDropdown">
+            <NavDropdown title="Randevular" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
     </Navbar>
       </div>
