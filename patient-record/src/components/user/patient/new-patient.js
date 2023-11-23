@@ -166,7 +166,6 @@ const NewPatient = () => {
           </Col>
 
 
-
             <Col xl={5} lg={5} md={4} sm={4}>
               <Row className="row-cols-1 row-cols-md-1">
                 <Form.Group as={Col} className="mb-3">
@@ -211,8 +210,6 @@ const NewPatient = () => {
                 </Form.Group>
               </Row>
           </Col>
-
-
 
 
           <Col xl={5} lg={5} md={4} sm={4}>
@@ -264,9 +261,6 @@ const NewPatient = () => {
               
             </Row>
           </Col>
-
-
-
 
 
           <Col xl={12} lg={12} md={12} sm={12}>
@@ -351,8 +345,6 @@ const NewPatient = () => {
                 </Form.Group>
               </Row>
           </Col>
-          
-
           
 
           <ButtonGroup className="mt-5">
